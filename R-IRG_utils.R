@@ -10,7 +10,3 @@ getfile <- function(x="clipboard"){
   write(x, "clipboard")
   return(x)
 }
-library(devtools)
-install_github("iramosgutierrez/RIRG",)
-library(RIRG)
-getfile()
