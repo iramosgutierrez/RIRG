@@ -1,2 +1,2 @@
 # RIRG
-functions for dayly work
+functions for daily work
