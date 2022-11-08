@@ -6,6 +6,20 @@
 \usage{
 getpath(x = "clipboard")
 }
+\arguments{
+\item{x}{String. File path copied from Windows' "copy file path".}
+}
+\value{
+An R usable file path.
+}
 \description{
 Copy directory to R understanding format.
+}
+\examples{
+getpath(x = "C:\Users\User\Documents")
+getpath()
+
+}
+\author{
+Ignacio Ramos-Gutierrez
 }

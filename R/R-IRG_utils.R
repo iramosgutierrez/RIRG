@@ -1,7 +1,15 @@
 #R functions
 
 #' Copy directory to R understanding format.
+#' @param x String. File path copied from Windows' "copy file path".
 #'
+#' @return An R usable file path.
+#'
+#' @author Ignacio Ramos-Gutierrez
+#' @examples
+#' getpath(x = "C:\Users\User\Documents")
+#' getpath()
+#' 
 #' @export
 getpath <- function(x="clipboard"){
   x <- readClipboard(raw = F)
