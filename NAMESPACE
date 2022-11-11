@@ -2,4 +2,5 @@
 
 export(firstword)
 export(getpath)
+export(joinAttributeTable)
 export(notNA)
