@@ -60,3 +60,33 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
   x2@data <- x.dat2.ord
   return(x2)
 }
+
+
+
+#' Progress bar printing
+#' @usage for(i in 1:15){
+#'   plot(1,1, main=i)
+#'   Sys.sleep(1)
+#'   progressbar(15, i)
+#'  }
+#' @param curr.iter Current iteration value
+#' @param tot.iter Number of total iterations
+#' @param ini.iter Number of first iteration (in case loop does not start in 1. Default is 1.)
+#' @author Ignacio Ramos-Gutierrez
+#' @export
+progressbar <- function( curr.iter,tot.iter, ini.iter=1){
+  
+  curr.iter <- curr.iter - ini.iter +1
+  tot.iter <- tot.iter - ini.iter +1
+  if(curr.iter==1){
+    cat(paste0("0%       25%       50%       75%       100%", "\n",
+               "|---------|---------|---------|---------|", "\n"))
+  }
+  
+  v<- seq(from=0, to=40, by=40/tot.iter)
+  v<- diff(ceiling(v))
+  cat(strrep("*", times=v[curr.iter]))
+  
+  if(curr.iter == tot.iter){cat("*\n")}
+  
+}
