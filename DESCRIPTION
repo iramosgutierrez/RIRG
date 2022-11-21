@@ -3,7 +3,7 @@ Title: IRG functions for R work
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Ignacio",
-           family = "Ramos",
+           family = "Ramos-Gutiérrez",
            role = c("aut", "cre"),
            email = "ignacio.ramosgutierrez@uam.es",
            comment = c(ORCID = "YOUR-ORCID-ID"))
