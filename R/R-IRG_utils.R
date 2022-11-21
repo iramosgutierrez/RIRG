@@ -90,3 +90,19 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1){
   if(curr.iter == tot.iter){cat("*\n")}
   
 }
+
+
+
+#' Move the mouse so the PC does not shut.
+#' @usage dontsleep()
+#' @param t Time the function takes to move the mouse.
+#' @author Ignacio Ramos-Gutierrez
+#' @export
+dontsleep <- function(t=0.01){
+  
+  coords <- KeyboardSimulator::mouse.get_cursor()
+  
+  KeyboardSimulator::mouse.move(coords[1]+1,coords[2]+1,t/2)
+  KeyboardSimulator::mouse.move(coords[1],  coords[2],  t/2)
+}
+
