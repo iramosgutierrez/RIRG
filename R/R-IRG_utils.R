@@ -72,22 +72,40 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
 #' @param curr.iter Current iteration value
 #' @param tot.iter Number of total iterations
 #' @param ini.iter Number of first iteration (in case loop does not start in 1. Default is 1.)
+#' @param units units ("secs", "mins" or "hours" in which "ETC" should be calculated)
 #' @author Ignacio Ramos-Gutierrez
 #' @export
-progressbar <- function( curr.iter,tot.iter, ini.iter=1){
+progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="secs"){
   
   curr.iter <- curr.iter - ini.iter +1
   tot.iter <- tot.iter - ini.iter +1
+  if(units=="secs"){d <-0}else if(units=="hours"){d <- 2} else{d <- 1}
+  
   if(curr.iter==1){
+    st <<- Sys.time()
     cat(paste0("0%       25%       50%       75%       100%", "\n",
                "|---------|---------|---------|---------|", "\n"))
   }
   
   v<- seq(from=0, to=40, by=40/tot.iter)
   v<- diff(ceiling(v))
-  cat(strrep("*", times=v[curr.iter]))
+  v <- cumsum(v)
+  txt <- strrep("*", times=v[curr.iter])
+  txt <- stringr::str_pad(txt, width = 45, side="right", pad=" ")
+  ct <-Sys.time()
+  et  <- as.numeric(difftime(ct, st, units=units))/curr.iter*(tot.iter-curr.iter)
+  et <- round(et, digits=d)
+  txt.end <- paste0(txt, "ETC: ", et, " ", units)
+  if(curr.iter == ini.iter){txt.end <- paste0(txt, "ETC: ");maxnchar <<- nchar(txt.end)}
+  if(curr.iter == tot.iter){txt.end <- paste0("*", txt, "DONE")}
   
-  if(curr.iter == tot.iter){cat("*\n")}
+  if(nchar(txt.end)>maxnchar){maxnchar <<- nchar(txt.end)}
+  txt.end <- stringr::str_pad(txt.end, width = maxnchar, side="right", pad=" ")
+  
+  cat("\r")
+  cat(txt.end)
+  
+  
   
 }
 

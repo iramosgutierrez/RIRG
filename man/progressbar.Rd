@@ -16,6 +16,8 @@ for(i in 1:15){
 \item{tot.iter}{Number of total iterations}
 
 \item{ini.iter}{Number of first iteration (in case loop does not start in 1. Default is 1.)}
+
+\item{units}{units ("secs", "mins" or "hours" in which "ETC" should be calculated)}
 }
 \description{
 Progress bar printing
