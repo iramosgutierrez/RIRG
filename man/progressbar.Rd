@@ -7,7 +7,7 @@
 for(i in 1:15){
   plot(1,1, main=i)
   Sys.sleep(1)
-  progressbar(15, i)
+  progressbar(i, 15)
  }
 }
 \arguments{

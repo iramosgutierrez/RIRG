@@ -67,7 +67,7 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
 #' @usage for(i in 1:15){
 #'   plot(1,1, main=i)
 #'   Sys.sleep(1)
-#'   progressbar(15, i)
+#'   progressbar(i, 15)
 #'  }
 #' @param curr.iter Current iteration value
 #' @param tot.iter Number of total iterations
