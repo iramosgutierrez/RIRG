@@ -106,7 +106,7 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="secs"){
   cat(txt.end)
   
   
-  
+  if(curr.iter == tot.iter){ rm(list=c("st", "maxnchar"),envir =  .GlobalEnv)}
 }
 
 
