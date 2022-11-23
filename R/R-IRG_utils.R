@@ -75,7 +75,7 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
 #' @param units units ("secs", "mins" or "hours" in which "ETC" should be calculated)
 #' @author Ignacio Ramos-Gutierrez
 #' @export
-progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="secs"){
+progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins"){
   
   curr.iter <- curr.iter - ini.iter +1
   tot.iter <- tot.iter - ini.iter +1
