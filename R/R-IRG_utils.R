@@ -73,13 +73,16 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
 #' @param tot.iter Number of total iterations
 #' @param ini.iter Number of first iteration (in case loop does not start in 1. Default is 1.)
 #' @param units units ("secs", "mins" or "hours" in which "ETC" should be calculated)
+#' @param msg Character. Message to desplay above the progress bar.
 #' @author Ignacio Ramos-Gutierrez
 #' @export
-progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins"){
+progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL){
   
   curr.iter <- curr.iter - ini.iter +1
   tot.iter <- tot.iter - ini.iter +1
   if(units=="secs"){d <-0}else if(units=="hours"){d <- 2} else{d <- 1}
+  
+  if(curr.iter==1 & !is.null(msg)){cat(msg, "\n")}
   
   if(curr.iter==1){
     st <<- Sys.time()
