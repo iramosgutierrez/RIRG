@@ -100,7 +100,7 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL)
   et <- round(et, digits=d)
   txt.end <- paste0(txt, "ETC: ", et, " ", units)
   if(curr.iter == ini.iter){txt.end <- paste0(txt, "ETC: ");maxnchar <<- nchar(txt.end)}
-  if(curr.iter == tot.iter){txt.end <- paste0("*", txt, "DONE")}
+  if(curr.iter == tot.iter){txt.end <- paste0("*", txt, "DONE\n")}
   
   if(nchar(txt.end)>maxnchar){maxnchar <<- nchar(txt.end)}
   txt.end <- stringr::str_pad(txt.end, width = maxnchar, side="right", pad=" ")
