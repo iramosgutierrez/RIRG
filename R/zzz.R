@@ -1,5 +1,8 @@
 
 .onAttach <- function(lib, pkg)
 {
-cat(paste0("mensaje de prueba"))
+  packageStartupMessage(paste0("mensaje de prueba"))
 }
+
+
+.on
