@@ -115,15 +115,27 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL)
 
 
 #' Move the mouse so the PC does not shut.
+#'
+#' @param use Logical. If TRUE, the function will barely move the mouse so the
+#' user can keep using the PC.
+#' @param days Number of days it should be running. note that days=1 (default)
+#'        means that at 00:00 of the next day, the function will stop.
+#' @param sleeptime time the system is slept between iterations
+#'
 #' @usage dontsleep()
-#' @param t Time the function takes to move the mouse.
 #' @author Ignacio Ramos-Gutierrez
 #' @export
-dontsleep <- function(t=0.01, use=F){
-  if(use){move<-1}else{move<-100}
+dontsleep <- function(use=F, days=2, sleeptime=60){
+  if(use){move<-1; t <- 0.01}else{move<-100; t <- 1}
+  in.day <- Sys.Date()
+  end.day <- in.day+days
+
+  while(Sys.Date()!=end.day){
   coords <- KeyboardSimulator::mouse.get_cursor()
 
   KeyboardSimulator::mouse.move(coords[1]+move,coords[2]+move,t/2)
   KeyboardSimulator::mouse.move(coords[1],  coords[2],  t/2)
+  Sys.sleep(sleeptime)
+  }
 }
 
