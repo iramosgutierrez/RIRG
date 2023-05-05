@@ -9,7 +9,7 @@
 #' @examples
 #' getpath(x = "C:\Users\User\Documents")
 #' getpath()
-#' 
+#'
 #' @export
 getpath <- function(x="clipboard"){
   x <- readClipboard(raw = F)
@@ -29,7 +29,7 @@ notNA <- function(x){
 #' @export
 firstword <- function(x){
   return(sapply(stringr::str_extract_all(x, "[A-Za-z\\-\\.]+"), `[`, 1))
-  
+
 }
 
 
@@ -39,20 +39,20 @@ firstword <- function(x){
 #' @param y Table to merge into the shapefile.
 #' @param xcol column in shapefile with id names, which must match ycol values.
 #' @param ycol column in table with id names, which must match xcol values.
-#' 
+#'
 #' @return A shapefile including the previous attribute table and the merged table.
 #'
 #' @author Ignacio Ramos-Gutierrez, copied from internet. https://stat.ethz.ch/pipermail/r-sig-geo/2014-July/021442.html
 #'
 #' @examples
 #' newshape <- joinAttributeTable(oldshape, table, oldshape$id, table$id)
-#' 
+#'
 #' @export
 joinAttributeTable <- function(x, y, xcol, ycol) {
-  
+
   x$sort_id <- 1:nrow(as(x, "data.frame"))
-  x.dat <- as(x, "data.frame") 
-  x.dat2 <- merge(x.dat, y, by.x = xcol, by.y = ycol) 
+  x.dat <- as(x, "data.frame")
+  x.dat2 <- merge(x.dat, y, by.x = xcol, by.y = ycol)
   x.dat2.ord <- x.dat2[order(x.dat2$sort_id), ]
   x2 <- x[x$sort_id %in% x.dat2$sort_id, ]
   x2.dat <- as(x2, "data.frame")
@@ -77,19 +77,19 @@ joinAttributeTable <- function(x, y, xcol, ycol) {
 #' @author Ignacio Ramos-Gutierrez
 #' @export
 progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL){
-  
+
   curr.iter <- curr.iter - ini.iter +1
   tot.iter <- tot.iter - ini.iter +1
   if(units=="secs"){d <-0}else if(units=="hours"){d <- 2} else{d <- 1}
-  
+
   if(curr.iter==1 & !is.null(msg)){cat(msg, "\n")}
-  
+
   if(curr.iter==1){
     st <<- Sys.time()
     cat(paste0("0%       25%       50%       75%       100%", "\n",
                "|---------|---------|---------|---------|", "\n"))
   }
-  
+
   v<- seq(from=0, to=40, by=40/tot.iter)
   v<- diff(ceiling(v))
   v <- cumsum(v)
@@ -101,13 +101,13 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL)
   txt.end <- paste0(txt, "ETC: ", et, " ", units)
   if(curr.iter == ini.iter){txt.end <- paste0(txt, "ETC: ");maxnchar <<- nchar(txt.end)}
   if(curr.iter == tot.iter){txt.end <- paste0("*", txt, "DONE")}
-  
+
   if(nchar(txt.end)>maxnchar){maxnchar <<- nchar(txt.end)}
   txt.end <- stringr::str_pad(txt.end, width = maxnchar, side="right", pad=" ")
-  
+
   cat("\r")
   cat(txt.end)
-  
+
   if(curr.iter == tot.iter){cat("\n")}
   if(curr.iter == tot.iter){ rm(list=c("st", "maxnchar"),envir =  .GlobalEnv)}
 }
@@ -119,11 +119,11 @@ progressbar <- function( curr.iter,tot.iter, ini.iter=1, units="mins", msg=NULL)
 #' @param t Time the function takes to move the mouse.
 #' @author Ignacio Ramos-Gutierrez
 #' @export
-dontsleep <- function(t=0.01){
-  
+dontsleep <- function(t=0.01, use=F){
+  if(use){move<-1}else{move<-100}
   coords <- KeyboardSimulator::mouse.get_cursor()
-  
-  KeyboardSimulator::mouse.move(coords[1]+1,coords[2]+1,t/2)
+
+  KeyboardSimulator::mouse.move(coords[1]+move,coords[2]+move,t/2)
   KeyboardSimulator::mouse.move(coords[1],  coords[2],  t/2)
 }
 
