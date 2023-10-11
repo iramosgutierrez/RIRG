@@ -7,7 +7,13 @@
 dontsleep()
 }
 \arguments{
-\item{t}{Time the function takes to move the mouse.}
+\item{use}{Logical. If TRUE, the function will barely move the mouse so the
+user can keep using the PC.}
+
+\item{days}{Number of days it should be running. note that days=1 (default)
+means that at 00:00 of the next day, the function will stop.}
+
+\item{sleeptime}{time the system is slept between iterations}
 }
 \description{
 Move the mouse so the PC does not shut.

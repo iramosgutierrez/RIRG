@@ -139,3 +139,25 @@ dontsleep <- function(use=F, days=2, sleeptime=60){
   }
 }
 
+
+#' Function to see if you are selected as Volunteer for the IBC
+#'
+#' @param ID Your ID used for the lookup
+#'
+#' @usage volunteeR()
+#' @author Ignacio Ramos-Gutierrez
+#' @export
+volunteeR <- function(ID){
+  require(gsheet)
+  table <- as.data.frame(gsheet::gsheet2tbl("1jo1AklCzjFqOJfy51ihUskWSpKY6r9TMx3fm0Gls7rY"))
+  l <- nchar(ID)
+  ids <- vector("character")
+  for (i in 1:(l-4)){
+    id.i <- substr(ID, i, i+3)
+    ids[i] <- paste0(paste0(rep("*", times=i-1), collapse = ""),
+                     id.i,
+                     paste0(rep("*", times=l-i-3), collapse = ""))
+  }
+
+  return( table[table[,2] %in% ids,1])
+}
