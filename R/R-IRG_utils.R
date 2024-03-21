@@ -161,3 +161,15 @@ volunteeR <- function(ID){
 
   return( table[table[,2] %in% ids,1])
 }
+
+
+#' Function to set working directory where the script is
+#'
+#' @usage thiswd()
+#' @usage setwd(thiswd())
+#'
+#' @author Ignacio Ramos-Gutierrez
+#' @export
+thiswd <- function(){
+  return(dirname(rstudioapi::getSourceEditorContext()$path))
+}
